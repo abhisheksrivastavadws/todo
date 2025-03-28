@@ -1,0 +1,40 @@
+#dataToEnter {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 10px;
+  margin-top: 3px;
+  height: 100%;
+}
+.displayContainer {
+  height: 20vh;
+}
+.todoDrive {
+  margin-left: 15px;
+  border: 1px solid rgb(226, 225, 225);
+}
+.todoBtn {
+  border: none;
+  padding: 5px;
+  margin-top: 0px;
+  margin-right: 14px;
+  text-align: center;
+  width: 90px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.delBtn {
+  border: none;
+  background: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.delBtn:hover {
+  background-color: rgb(191, 224, 240);
+}
+.todoBtn:hover {
+  background-color: rgb(191, 224, 240);
+  color: rgb(22, 16, 16);
+}
+.btnControl {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
