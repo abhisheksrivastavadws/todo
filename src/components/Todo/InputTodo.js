@@ -5,12 +5,18 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
+import DisplayTodo from "./DisplayTodo";
 
 export default function InputTodo() {
   const [text, setText] = useState("");
+  const [handleText, setHandleText] = useState("");
   const HandleTodoInput = () => {
     if (text.length > 0) {
       console.log(text, text.length);
+      // addTodoToList();
+
+      setHandleText(text);
+
       setText("");
     }
   };
@@ -97,6 +103,12 @@ export default function InputTodo() {
           </button>
         </CardActions>
       </Card>
+      {/* {(() => {
+        if (handleText.length > 0) {
+          return <DisplayTodo newData={handleText} />
+        }
+      })()} */}
+      <DisplayTodo newData={handleText} />
     </div>
   );
 }
