@@ -7,6 +7,7 @@ import "./DisplayTodo.css";
 import Card from "@mui/material/Card";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Row } from "reactstrap";
+import InputTodo from "./InputTodo";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -19,18 +20,18 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-export default function DisplayTodo({ newData }) {
+export default function DisplayTodo() {
   const [textValue, setTextValue] = React.useState(["1"]);
 
   // setTextValue(...textValue, newData);
-  useEffect(() => {
-    setTextValue(...textValue, newData);
-  }, []);
-  console.log(...textValue, newData);
+  // useEffect(() => {
+  //   setTextValue(...textValue, users);
+  // }, []);
+  // console.log(...textValue, users);
 
   // console.log("NEW DATA", textValue.length, newData.length, newData, textValue);
   // if (newData.length > 0) {
-  if (newData.length > 0) {
+  // if (newData.length > 0) {
     return (
       <React.Fragment>
         <div className="displayContainer">
@@ -72,7 +73,8 @@ export default function DisplayTodo({ newData }) {
             ))}
           </Card>
         </div>
+        <InputTodo users= {textValue}/>
       </React.Fragment>
     );
   }
-}
+// }

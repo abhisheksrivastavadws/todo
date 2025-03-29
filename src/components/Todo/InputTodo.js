@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -7,24 +7,27 @@ import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
 import { Grid, TextField, Button, Paper } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import DisplayTodo from './DisplayTodo'
 // import React, { useRef } from "react";
 
-export default function InputTodo() {
-  const divRef = useRef(null);
+export default function InputTodo({users}) {
   const [text, setText] = useState([]);
   const [handleText, setHandleText] = useState("");
+
   const HandleTodoInput = () => {
-    if (handleText.trim() !== "") {
-      setText([...text, handleText]);
-      setHandleText("");
-    }
+    // if (handleText.trim() !== "") {
+      // setText([...text, handleText]);
+    setHandleText(text)
+
+   
+
+      // setHandleText("");
+    // }
   };
   const HandleTodoChangedValue = (e) => {
     setText(e.target.value);
   };
-  const removeTask = (index) => {
-    setText(text.filter((_, i) => i !== index));
-  };
+
   // const success = () => {
   //   if (divRef.current.classList.contains("success")) {
   //     <Button style={{ textDecoration: "line" }}> success </Button>;
@@ -60,7 +63,8 @@ export default function InputTodo() {
             </p>
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            <Input
+            {users.map((user)=>{
+               <Input
               type="text"
               style={{
                 marginTop: "0px",
@@ -69,10 +73,10 @@ export default function InputTodo() {
                 padding: "10px",
                 marginLeft: "1rem",
               }}
-              value={handleText}
-              onChange={(e) => setHandleText(e.target.value)}
+              value={user = handleText.valueOf}
+              onChange={HandleTodoChangedValue}
             />
-
+          })}
             <span
               style={{ display: "block", marginTop: "5px", fontSize: "10px" }}
             >
@@ -97,47 +101,11 @@ export default function InputTodo() {
           </button>
         </CardActions>
       </Card>
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-        style={{ marginTop: "20px" }}
-      >
-        {/* Task List */}
-        {text.map((text, index) => (
-          <Grid item xs={12} sm={8} key={index}>
-            <Paper
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px",
-              }}
-            >
-              <Typography>{text}</Typography>
-              <Button
-                ref={divRef}
-                className="success"
-                color="success"
-                outline
-                style={{
-                  marginLeft: "29rem",
-                }}
-              >
-                success
-              </Button>
-              <Button color="secondary" onClick={() => removeTask(index)}>
-                <DeleteIcon />
-              </Button>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
-      {/* {(() => {
-        if (handleText.length > 0) {
-          return <DisplayTodo newData={handleText} />
-        }
-      })()} */}
+   
+{() => (
+    <DisplayTodo newData={handleText} /> 
+  )
+}
       {/* <DisplayTodo newData={handleText} /> */}
     </div>
   );
