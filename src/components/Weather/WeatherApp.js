@@ -1,10 +1,35 @@
 import React, {useEffect} from "react";
 import axios from 'axios';  
+import Input from "@mui/material/Input";
+import {Button} from 'reactstrap'
 export default function  WeatherApp () {
-    // const [ apiData , setApiData ] = React.useState([])
-
-    var apiData = []
+  
     const [ data , setData ] = React.useState([])
+    const [ place , setPlace ] = React.useState('New York')
+    const [ temperature , setTemperature ] = React.useState([])
+    const handleChangeplace = (e) => {
+      // console.log(e.target.value)
+      setPlace(e.target.value)
+    }
+    const handlesubmitplace = ( ) => {
+      axios.get('http://api.weatherstack.com/current', {
+        params: {
+          access_key : "0b367e22073600de2c45401051bf51e0",
+          query : place
+        }
+      })
+      .then(function (response) {
+        
+        setTemperature(response.data.current.temperature)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+    
+    }
     useEffect(() => { 
     axios.get('https://jsonplaceholder.typicode.com/todos')
   .then(function (response) {
@@ -27,16 +52,53 @@ export default function  WeatherApp () {
   
 }, []);
 
-if(data.length > 0 ){
+useEffect(()=> {
+  axios.get('http://api.weatherstack.com/current', {
+    params: {
+      access_key : "0b367e22073600de2c45401051bf51e0",
+      query : place
+    }
+  })
+  .then(function (response) {
+    console.log(response.data.current.temperature);
+    setTemperature(response.data.current.temperature)
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+
+}, []);
+
+if(temperature > 0 && temperature !== undefined){
     return (
-        <div>
-           {
+        <div style={{textAlign:"center"}}>
+           {/* {
             data.map((dataone, key)=> (
                 <h1>
                     {dataone.title } 
                 </h1>
             ))
-           } 
+           }  */}
+           <div> <Input
+              type="text"
+              style={{
+                marginTop: "0px",
+                width: "90%",
+                fontSize: "12px",
+                padding: "10px",
+                marginLeft: "1rem",
+              }}
+              value={place}
+              onChange={handleChangeplace}
+            />
+            </div>
+           <div > <Button outline={'success'} onClick={handlesubmitplace} > Submit </Button></div>
+          
+           {temperature} celcius
+           
            
         </div>
     )
