@@ -4,7 +4,7 @@ import Input from "@mui/material/Input";
 import {Button} from 'reactstrap'
 export default function  WeatherApp () {
   
-    const [ data , setData ] = React.useState([])
+    // const [ data , setData ] = React.useState([])
     const [ place , setPlace ] = React.useState('New York')
     const [ temperature , setTemperature ] = React.useState([])
     const handleChangeplace = (e) => {
@@ -30,27 +30,27 @@ export default function  WeatherApp () {
       });
     
     }
-    useEffect(() => { 
-    axios.get('https://jsonplaceholder.typicode.com/todos')
-  .then(function (response) {
-    // handle success
+//     useEffect(() => { 
+//     axios.get('https://jsonplaceholder.typicode.com/todos')
+//   .then(function (response) {
+//     // handle success
     
-    // setApiData(response.data)
-    // apiData = response.data
-    // console.log(response.data)
-     setData(response.data)
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .finally(function () {
+//     // setApiData(response.data)
+//     // apiData = response.data
+//     // console.log(response.data)
+//      setData(response.data)
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .finally(function () {
 
-// console.log(apiData)
+// // console.log(apiData)
 
-  });
+//   });
   
-}, []);
+// }, []);
 
 
 

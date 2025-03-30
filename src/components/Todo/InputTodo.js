@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
-import { Button } from "@mui/material";
 import DisplayTodo from "./DisplayTodo";
 
 export default function InputTodo() {
