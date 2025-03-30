@@ -8,7 +8,7 @@ export default function Todo() {
     <div>
       <Header />
       <InputTodo />
-      {/* <DisplayTodo /> */}
+      
     </div>
   );
 }

@@ -5,7 +5,8 @@ import WeatherApp from "./components/Weather/WeatherApp"
 export default function App() {
   return (
     <div>
-      <WeatherApp />
+      <Todo/>
+      {/* <WeatherApp /> */}
     </div>
   );
 }

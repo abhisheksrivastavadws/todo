@@ -67,7 +67,7 @@ useEffect(()=> {
     console.log(error);
   })
   .finally(function () {
-    // always executed
+    
   });
 
 }, []);

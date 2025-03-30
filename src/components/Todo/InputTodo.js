@@ -1,93 +1,58 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
-import { Grid, TextField, Button, Paper } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import DisplayTodo from './DisplayTodo'
-// import React, { useRef } from "react";
+import { Button } from "@mui/material";
+import DisplayTodo from "./DisplayTodo";
 
-export default function InputTodo({users}) {
-  const [text, setText] = useState([]);
-  const [handleText, setHandleText] = useState("");
+export default function InputTodo() {
+  const [text, setText] = useState("");
+  const [todos, setTodos] = useState([]); 
 
-  const HandleTodoInput = () => {
-    // if (handleText.trim() !== "") {
-      // setText([...text, handleText]);
-    setHandleText(text)
-
-   
-
-      // setHandleText("");
-    // }
-  };
-  const HandleTodoChangedValue = (e) => {
-    setText(e.target.value);
+  const handleAddTodo = () => {
+    if (text.trim()) {
+      setTodos(prevTodos => [...prevTodos, { text, done: false }]); 
+      setText(""); 
+    }
   };
 
-  // const success = () => {
-  //   if (divRef.current.classList.contains("success")) {
-  //     <Button style={{ textDecoration: "line" }}> success </Button>;
-  //   }
-  // };
+  const handleDelete = (index) => {
+    // it will delete the element whose index is matched with i 
+    setTodos(prevTodos => prevTodos.filter((_, i) => i !== index));
+  };
+
+  const handleDone = (index) => {
+    setTodos(prevTodos =>
+      // it will keep all the element apart from index element  
+      prevTodos.map((todo, i) => i === index ? { ...todo, done: !todo.done } : todo)
+    );
+  };
+
   return (
     <div className="container">
       <Card style={{ width: "98%", border: "1px solid #ddcece" }}>
         <div className="task" style={{ borderBottom: "0.5px solid grey" }}>
-          <p
-            style={{
-              marginTop: "1rem",
-              marginBottom: "0px",
-              marginLeft: "1rem",
-              padding: "5px",
-              color: "grey",
-            }}
-          >
+          <p style={{ marginTop: "1rem", marginLeft: "1rem", padding: "5px", color: "grey" }}>
             Add a task
           </p>
         </div>
         <CardMedia sx={{ height: "1vh" }} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            <p
-              style={{
-                marginTop: "0px",
-                marginBottom: "0px",
-                fontSize: "15px",
-              }}
-            >
-              Items to be added
-            </p>
-          </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {users.map((user)=>{
-               <Input
+            <Input
               type="text"
-              style={{
-                marginTop: "0px",
-                width: "90%",
-                fontSize: "12px",
-                padding: "10px",
-                marginLeft: "1rem",
-              }}
-              value={user = handleText.valueOf}
-              onChange={HandleTodoChangedValue}
+              style={{ width: "90%", fontSize: "12px", padding: "10px", marginLeft: "1rem" }}
+              value={text}
+              onChange={e => setText(e.target.value)}
             />
-          })}
-            <span
-              style={{ display: "block", marginTop: "5px", fontSize: "10px" }}
-            >
-              What do you want to procastinate 😊
-            </span>
           </Typography>
         </CardContent>
         <CardActions>
           <button
             style={{
-              marginTop: "0px",
               backgroundColor: "rgb(136 193 221)",
               cursor: "pointer",
               border: "none",
@@ -95,18 +60,14 @@ export default function InputTodo({users}) {
               padding: "5px",
               fontSize: "15px",
             }}
-            onClick={HandleTodoInput}
+            onClick={handleAddTodo}
           >
             Submit
           </button>
         </CardActions>
       </Card>
-   
-{() => (
-    <DisplayTodo newData={handleText} /> 
-  )
-}
-      {/* <DisplayTodo newData={handleText} /> */}
+
+      <DisplayTodo todos={todos} onDelete={handleDelete} onDone={handleDone} />
     </div>
   );
 }
