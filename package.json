@@ -14,6 +14,7 @@
     "axios": "^1.8.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^7.4.1",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.2.3",
     "web-vitals": "^2.1.4"
@@ -41,9 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "bootstrap": "^5.3.3",
-    "react-router-dom": "^7.4.1"
   }
 }
