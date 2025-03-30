@@ -19,7 +19,7 @@ export default function  WeatherApp () {
         }
       })
       .then(function (response) {
-        
+        console.log(response.data)
         setTemperature(response.data.current.temperature)
       })
       .catch(function (error) {
@@ -52,36 +52,11 @@ export default function  WeatherApp () {
   
 }, []);
 
-useEffect(()=> {
-  axios.get('http://api.weatherstack.com/current', {
-    params: {
-      access_key : "0b367e22073600de2c45401051bf51e0",
-      query : place
-    }
-  })
-  .then(function (response) {
-    console.log(response.data.current.temperature);
-    setTemperature(response.data.current.temperature)
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .finally(function () {
-    
-  });
 
-}, []);
 
-if(temperature > 0 && temperature !== undefined){
+
     return (
-        <div style={{textAlign:"center"}}>
-           {/* {
-            data.map((dataone, key)=> (
-                <h1>
-                    {dataone.title } 
-                </h1>
-            ))
-           }  */}
+        <div style={{textAlign:"center"}}>          
            <div> <Input
               type="text"
               style={{
@@ -97,10 +72,9 @@ if(temperature > 0 && temperature !== undefined){
             </div>
            <div > <Button outline={'success'} onClick={handlesubmitplace} > Submit </Button></div>
           
-           {temperature} celcius
+           <h1>{temperature} Degree celcius</h1>
            
            
         </div>
     )
-}
 }
