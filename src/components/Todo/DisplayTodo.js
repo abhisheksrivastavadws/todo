@@ -25,7 +25,7 @@ export default function DisplayTodo({ todos, onDelete, onDone }) {
         <Card style={{ width: "85%", minHeight: "55px", margin: "auto", marginTop: "2rem", padding: "1rem" }}>
           {todos.length > 0 ? (
             todos.map((todo, index) => (
-              
+              <Grid container spacing={1} key={index} style={{ marginTop: "7px" }}>
                 <Grid item xs={12} sm={6}>
                   <Item 
                     className="todoDrive" 
