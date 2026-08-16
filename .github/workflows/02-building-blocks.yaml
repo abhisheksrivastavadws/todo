@@ -11,3 +11,4 @@ jobs:
                 run: |
                     echo "${{ github.jobs[github.job].name }}"
                     echo "${{ github.event_name }}"
+                    ${{ github.jobs[github.job].name }}
